@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+#
+#  Created on 2009-2-16.
+#  Copyright (c) 2009. All rights reserved.
+
+require File.expand_path(File.dirname(__FILE__) + "/../lib/d50farm")
+
+require "d50farm/cli"
+
+D50farm::CLI.execute(STDOUT, ARGV)

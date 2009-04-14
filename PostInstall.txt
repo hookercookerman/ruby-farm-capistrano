@@ -1,0 +1,3 @@
+
+For more information on ruby-farm-capistrano, see the wiki at http://wiki.github.com/hookercookerman/ruby-farm-capistrano
+
