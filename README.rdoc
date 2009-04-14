@@ -1,32 +1,27 @@
-= d50farm
+= ruby-farm-capistrano
 
-* FIX (url)
+* http://www.dynamic50.com
 
 == DESCRIPTION:
 
-FIX (describe your package)
-
-== FEATURES/PROBLEMS:
-
-* FIX (list of features or problems)
-
-== SYNOPSIS:
-
-  FIX (code sample of usage)
+This is a set of capistrano scripts that use a combination of Amazon EC2 instances and Chef (http://wiki.opscode.com/display/chef/Home) to create, manage and deploy to a farm of EC2 instances.
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* capistrano
+* couchrest
+* json
+* net-ssh
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+gem install hookercookerman_ruby-mash-capistrano
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2009 FIXME full name
+Copyright (c) 2009 Dynamic 50 Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
