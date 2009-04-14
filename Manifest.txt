@@ -1,0 +1,17 @@
+History.txt
+Manifest.txt
+PostInstall.txt
+README.rdoc
+Rakefile
+lib/ruby-farm-capistrano.rb
+lib/ruby-farm-capistrano/address.rb
+lib/ruby-farm-capistrano/aws_capistrano.rb
+lib/ruby-farm-capistrano/chef_capistrano.rb
+lib/ruby-farm-capistrano/client.rb
+lib/ruby-farm-capistrano/d50_capistrano.rb
+lib/ruby-farm-capistrano/instance.rb
+lib/ruby-farm-capistrano/lib.rb
+lib/ruby-farm-capistrano/volume.rb
+script/console
+script/destroy
+script/generate
