@@ -1,6 +1,6 @@
 = ruby-farm-capistrano
 
-* http://www.dynamic50.com
+http://www.dynamic50.com
 
 == DESCRIPTION:
 
