@@ -13,10 +13,10 @@ load(File.expand_path(File.dirname(__FILE__)) + '/chef_capistrano.rb')
 load(File.expand_path(File.dirname(__FILE__)) + '/aws_capistrano.rb')
 
 on :start, 'add_ssh_key', :except => ['aws:create_keypair']
-on :start, 'd50:configure_couch_db'
-on :start, 'load_roles', :except => [ 'd50:create_client']
+on :start, 'farm:configure_couch_db'
+on :start, 'load_roles', :except => [ 'farm:create_client']
 
-after 'deploy:setup', 'd50:change_app_to_deploy_user'
+after 'deploy:setup', 'farm:change_app_to_deploy_user'
 
 # Make sure all the roles exist
 roles[:app]
@@ -25,7 +25,7 @@ roles[:web]
 roles[:rails]
 roles[:all]
 
-namespace :d50 do
+namespace :farm do
   desc "Create the database entries for this client"
   task :create_client do
     Client.create(application)
@@ -141,7 +141,7 @@ task :load_roles do
 
   # Check that the client exists
   if client.nil?
-    raise Error, "Error: Client doesn't exist in database. Run cap d50:create_client."
+    raise Error, "Error: Client doesn't exist in database. Run cap farm:create_client."
   end
 
   # Get the client's instances
@@ -161,12 +161,12 @@ task :add_ssh_key do
   check_ssh_key()
 end
 
-before "deploy:restart", "d50:change_to_deploy_user"
-before "deploy:restart", "d50:update_database_yml"
-after "d50:update_database_yml", "chef:update_passenger"
+before "deploy:restart", "farm:change_to_deploy_user"
+before "deploy:restart", "farm:update_database_yml"
+after "farm:update_database_yml", "chef:update_passenger"
 
 after "deploy:update_code", "deploy:submodules"
-after "d50:update_database_yml", "deploy:build_gems"
+after "farm:update_database_yml", "deploy:build_gems"
 
 namespace :deploy do
   task :restart do

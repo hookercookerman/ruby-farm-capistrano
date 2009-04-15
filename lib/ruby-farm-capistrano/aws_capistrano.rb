@@ -5,7 +5,7 @@ set :aws_region, 'eu-west-1'
 
 # Initialise ec2 before all the aws tasks
 before 'aws:', 'aws:init'
-on :start, 'aws:init', :only => ['aws:start_instance', 'aws:stop_instance', 'aws:create_keypair', 'd50:assign_db']
+on :start, 'aws:init', :only => ['aws:start_instance', 'aws:stop_instance', 'aws:create_keypair', 'farm:assign_db']
 
 namespace :aws do
   task :init do
@@ -64,6 +64,19 @@ namespace :aws do
     File::open("config/farmkey", 'w', 0600) do |file|
       file.write(result[:aws_material])
     end
+  end
+
+  desc "Delete an EBS volume"
+  task :delete_volume do
+    client = Client.get_by_name(application)
+    volumes = client.get_volumes()
+
+    if volumes.size == 0 then
+      raise Error, "This client doesn't have any volumes"
+    end
+
+    # Attempt to delete the volume
+    volumes[0].delete()
   end
 end
 

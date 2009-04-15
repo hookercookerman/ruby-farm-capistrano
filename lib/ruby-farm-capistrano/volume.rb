@@ -16,7 +16,10 @@ class Volume < CouchRest::ExtendedDocument
 
   # Delete this volume
   def delete()
-    self.destroy()
+    # Attempt to delete it on AWS
+    if $ec2.delete_volume(self.id) then
+      self.destroy()
+    end
   end
 
   # Attach this volume to an instance
@@ -81,6 +84,10 @@ class Volume < CouchRest::ExtendedDocument
       self.attached_instance = nil
       self.save()
     end
+  end
+
+  def to_s()
+    return "#{self.id} attached to #{self.attached_instance}"
   end
     
   def Volume.check_all()

@@ -84,6 +84,8 @@ namespace :chef do
   task :update_db_nodes, :roles => :db do
     next if find_servers_for_task(current_task).empty?
     attributes = { "recipes" => ["mysql::server"]}
+
+    # Set the variables for the mysql server
     update_chef_attributes(attributes)
   end
 
@@ -114,6 +116,7 @@ namespace :chef do
     attributes["database"]["name"] = db_database
     attributes["database"]["user"] = db_user
     attributes["database"]["password"] = db_password
+    attributes["database"]["root_password"] = db_root_password
 
     # Write the database host
     databaseInstance = client.get_db_instance()
@@ -122,6 +125,10 @@ namespace :chef do
     else
       attributes["database"]["host"] = databaseInstance.internal_host
     end
+
+    attributes["aws"] = {}
+    attributes["aws"]["access_key"] = aws_access_key
+    attributes["aws"]["secret"] = aws_secret
 
     # We also add any extra apt packages that may have been defined
     attributes['extra_apt_packages'] = extra_apt_packages

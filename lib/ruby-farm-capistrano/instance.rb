@@ -85,9 +85,15 @@ class Instance < CouchRest::ExtendedDocument
   # Class methods
 
   def Instance.print_for_client(client)
+    puts "\nInstances:"
     client.get_instances().each { |instance|
       puts "#{instance.to_s()}"
     }
+    puts "\nVolumes:"
+    client.get_volumes().each { |volume|
+      puts "#{volume.to_s()}"
+    }
+    puts
   end
 
     
