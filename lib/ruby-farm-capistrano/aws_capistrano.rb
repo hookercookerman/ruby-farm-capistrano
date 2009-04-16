@@ -5,7 +5,7 @@ set :aws_region, 'eu-west-1'
 
 # Initialise ec2 before all the aws tasks
 before 'aws:', 'aws:init'
-on :start, 'aws:init', :only => ['aws:start_instance', 'aws:stop_instance', 'aws:create_keypair', 'farm:assign_db']
+on :start, 'aws:init', :only => ['aws:start_instance', 'aws:stop_instance', 'aws:create_keypair', 'aws:delete_volume', 'farm:assign_db']
 
 namespace :aws do
   task :init do

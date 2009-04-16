@@ -18,6 +18,7 @@ class Volume < CouchRest::ExtendedDocument
   def delete()
     # Attempt to delete it on AWS
     if $ec2.delete_volume(self.id) then
+      puts "Deleting volume: #{self.to_s()}"
       self.destroy()
     end
   end
