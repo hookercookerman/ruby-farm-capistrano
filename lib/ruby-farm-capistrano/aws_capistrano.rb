@@ -76,7 +76,7 @@ namespace :aws do
     end
 
     # Attempt to delete the volume
-    volumes[0].delete()
+    volumes[0].delete_volume()
   end
 end
 

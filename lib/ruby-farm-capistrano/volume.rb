@@ -15,7 +15,18 @@ class Volume < CouchRest::ExtendedDocument
 
 
   # Delete this volume
-  def delete()
+  def delete_volume()
+    # Check if this volume is in use
+    descriptions = $ec2.describe_volumes([self.id])
+
+    if descriptions.size == 0 then
+      raise "Volume was not found in DB"
+    end
+
+    if descriptions[0][:aws_status] == 'in-use' then
+      raise "This volume is still 'in-use', if you have just shut down it's instance, wait a few seconds and try again"
+    end
+
     # Attempt to delete it on AWS
     if $ec2.delete_volume(self.id) then
       puts "Deleting volume: #{self.to_s()}"

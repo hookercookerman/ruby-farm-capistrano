@@ -32,7 +32,7 @@ namespace :farm do
   end
 
   desc "Print instances in this client's farm"
-  task :print_farm do
+  task :show do
     client = Client.get_by_name(application)
     Instance.print_for_client(client)
   end
