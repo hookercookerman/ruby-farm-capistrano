@@ -117,6 +117,7 @@ namespace :chef do
     attributes["database"]["user"] = db_user
     attributes["database"]["password"] = db_password
     attributes["database"]["root_password"] = db_root_password
+    attributes["database"]["environment"] = rails_environment
 
     # Write the database host
     databaseInstance = client.get_db_instance()
