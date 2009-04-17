@@ -8,7 +8,7 @@ lib/ruby-farm-capistrano/address.rb
 lib/ruby-farm-capistrano/aws_capistrano.rb
 lib/ruby-farm-capistrano/chef_capistrano.rb
 lib/ruby-farm-capistrano/client.rb
-lib/ruby-farm-capistrano/d50_capistrano.rb
+lib/ruby-farm-capistrano/farm_capistrano.rb
 lib/ruby-farm-capistrano/instance.rb
 lib/ruby-farm-capistrano/lib.rb
 lib/ruby-farm-capistrano/volume.rb
