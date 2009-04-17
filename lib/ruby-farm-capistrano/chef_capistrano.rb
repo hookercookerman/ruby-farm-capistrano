@@ -76,7 +76,7 @@ namespace :chef do
     # We need to add a path and port so that passenger know where to find the app
     # and the load balancer knows where to find it
     attributes = {}
-    attributes['rails_apps'] = [ ["#{current_path}/public", application_port] ]
+    attributes['rails_apps'] = [ ["#{current_path}/public", application_port, rails_environment] ]
     update_chef_attributes(attributes)
   end
 

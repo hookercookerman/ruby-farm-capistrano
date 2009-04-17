@@ -25,6 +25,9 @@ roles[:web]
 roles[:rails]
 roles[:all]
 
+# Defaults
+set :rails_environment, 'production'
+
 namespace :farm do
   desc "Create the database entries for this client"
   task :create_client do
@@ -79,7 +82,7 @@ namespace :farm do
   desc "Run a rake task for each app instance"
   task :rake, :roles => :rails do
     command = ENV["COMMAND"]
-    run "cd #{current_path} && RAILS_ENV=production rake #{command}"
+    run "cd #{current_path} && RAILS_ENV=#{rails_environment} rake #{command}"
   end
 
   desc "Make sure the git host is in known_hosts"
@@ -180,7 +183,7 @@ namespace :deploy do
 
   desc "Build any bundled gems"
   task :build_gems do
-    run "cd #{release_path} && RAILS_ENV='production' rake gems:build"
+    run "cd #{release_path} && RAILS_ENV=#{rails_environment} rake gems:build"
   end
 end
 
