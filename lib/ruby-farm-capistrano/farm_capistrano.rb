@@ -26,6 +26,8 @@ roles[:rails]
 roles[:all]
 
 # Defaults
+
+# The rails environment used in rake tasks and for passenger
 set :rails_environment, 'production'
 
 namespace :farm do
