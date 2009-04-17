@@ -12,7 +12,7 @@ require 'capistrano'
 load(File.expand_path(File.dirname(__FILE__)) + '/chef_capistrano.rb')
 load(File.expand_path(File.dirname(__FILE__)) + '/aws_capistrano.rb')
 
-on :start, 'add_ssh_key', :except => ['aws:create_keypair']
+on :start, 'add_ssh_key', :except => ['aws:create_keypair', 'farm:create_client']
 on :start, 'farm:configure_couch_db'
 on :start, 'load_roles', :except => [ 'farm:create_client']
 
